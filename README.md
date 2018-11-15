@@ -3,6 +3,15 @@
 
 ## It is a basic and simple platform for publishing posts, in the format of blog. 
 
+### Initial Artifacts:
+- Account.
+- Author.
+- Post.
+- Post Category.
+- Post Tag.
+- Post Comments.
+- Responsible for the Commentary.
+
 ### General Documentation.
 - my-posts
 
