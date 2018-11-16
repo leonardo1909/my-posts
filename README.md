@@ -15,7 +15,7 @@
 ### Entity relationship diagram (ERD) 
 
 <p align="center">
-    <img src="https://github.com/alisonbuss/my-post/raw/master/documentation/my-posts-erd.png" width="400px"/>
+    <img src="https://github.com/alisonbuss/my-posts/raw/master/documentation/my-posts-erd.png"/>
 </p>
 
 ### General Documentation.
