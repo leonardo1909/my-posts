@@ -12,6 +12,12 @@
 - Post Comments.
 - Responsible for the Commentary.
 
+### Entity relationship diagram (ERD) 
+
+<p align="center">
+    <img src="https://github.com/alisonbuss/my-post/raw/master/documentation/my-posts-erd.png" width="400px"/>
+</p>
+
 ### General Documentation.
 - my-posts
 
