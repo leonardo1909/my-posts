@@ -42,7 +42,7 @@
 - my-posts-admin-angular
 
 ### Implementation of the Blog Module.
-- my-posts-blog-node
+- my-posts-blog-go
 - my-posts-blog-angular
 
 ## Documentation:
