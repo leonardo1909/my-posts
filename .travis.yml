@@ -1,4 +1,4 @@
-language: "python\npython: 3.6"
+language: "python"
 services:
   - postgresql
 env:
