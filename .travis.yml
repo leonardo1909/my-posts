@@ -2,7 +2,7 @@ language: "python"
 services:
   - postgresql
 env:
-  - 'DJANGO=3.0 DB=postgresql'
+  - 'DJANGO=3.0'
 install:
   - 'pip install -r requirements/requirements.txt'
 before_script:
@@ -10,3 +10,4 @@ before_script:
   - 'python manage.py migrate'
 script:
   - 'python manage.py test'
+  - 'python manage.py runserver'
