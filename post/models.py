@@ -11,6 +11,7 @@ class Post(models.Model):
     )
     titulo = models.CharField(
         max_length=100,
+        unique=True,
         db_column='ds_titulo'
     )
     descricao = models.CharField(
