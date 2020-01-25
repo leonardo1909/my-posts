@@ -1,9 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import CreateModelMixin
 
 from post.serializers import PostSerializer
 
 
-class PostViewSet(ModelViewSet):
+class PostViewSet(GenericViewSet, CreateModelMixin):
     """
         View simples para crud de posts
     """
