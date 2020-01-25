@@ -50,7 +50,7 @@ class Categoria(models.Model):
 
     descricao = models.CharField(
         max_length=300,
-        unique=True,
+        null=True,
         db_column='ds_categoria'
     )
 
@@ -76,7 +76,6 @@ class Tag(models.Model):
 
     nome = models.CharField(
         max_length=100,
-        unique=True,
         db_column='ds_tag'
     )
 

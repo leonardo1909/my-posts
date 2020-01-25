@@ -2,12 +2,14 @@ from rest_framework.test import APITestCase
 from django.urls import reverse
 from rest_framework import status
 
-from post.models import Post
+from post.models import (Post, Tag, PostTag)
 
 
 class TestPostCreate(APITestCase):
     def setUp(self):
         self.posts = Post.objects.all()
+        self.tag = Tag.objects.all()
+        self.post_tag = PostTag.objects.all()
 
     def test_criar_post(self):
         """
@@ -115,3 +117,86 @@ class TestPostCreate(APITestCase):
             response.status_code,
             status.HTTP_400_BAD_REQUEST
         )
+
+    def test_post_com_tag(self):
+        """
+            Testa a criação de posts com tags.
+        """
+        total_post = self.posts.count()
+        url = reverse('post-list')
+        data = {
+            "titulo": "test post",
+            "descricao": "teste",
+            "conteudo": "teste",
+            "tags": [
+                {
+                    "nome": "first tag"
+                },
+                {
+                    "nome": "second tag"
+                }
+            ]
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED
+        )
+        self.assertEqual(self.posts.count(), total_post + 1)
+
+    def test_post_com_tag_existente(self):
+        """"
+            Testando a criação de post com tag existente.
+            Caso a tag passada já exista, a aplicação deve utilizar
+            as tags já existentes para o post criado.
+        """
+
+        total_post = self.posts.count()
+
+        url = reverse('post-list')
+        data = {
+            "titulo": "Post Tag",
+            "descricao": "teste",
+            "conteudo": "teste",
+            "tags": [
+                {
+                    "nome": "first tag"
+                },
+                {
+                    "nome": "second tag"
+                }
+            ]
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED
+        )
+        self.assertEqual(self.posts.count(), total_post + 1)
+
+        total_post = self.posts.count()
+        total_tag = self.tag.count()
+        total_post_tag = self.post_tag.count()
+
+        data = {
+            "titulo": "Post Tag existente",
+            "descricao": "teste",
+            "conteudo": "teste",
+            "tags": [
+                {
+                    "nome": "first tag"
+                },
+                {
+                    "nome": "second tag"
+                }
+            ]
+        }
+        response = self.client.post(url, data, format='json')
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED
+        )
+        self.assertEqual(self.posts.count(), total_post + 1)
+        self.assertEqual(self.tag.count(), total_tag)
+        self.assertEqual(self.post_tag.count(), total_post_tag + 2)
